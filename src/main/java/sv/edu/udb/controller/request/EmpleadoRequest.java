@@ -22,7 +22,7 @@ public class EmpleadoRequest {
     private String dui;
 
     @NotBlank(message = "El nombre de la persona es obligatorio")
-    @Size(max = 50, message = "El nombre no puede exceder los 50 caracteres")
+    @Size(min = 5, max = 50, message = "El nombre no puede exceder los 50 caracteres")
     private String nombre;
 
     @NotBlank(message = "El número de teléfono es obligatorio")
