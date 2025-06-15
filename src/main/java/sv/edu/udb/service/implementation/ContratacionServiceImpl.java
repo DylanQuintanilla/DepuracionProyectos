@@ -19,6 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ContratacionServiceImpl implements ContratacionService {
 
+    //Llamamos todos los repositorios porque los vamos a utilizar mas adelante
     @NonNull
     private final ContratacionRepository contratacionRepository;
 
@@ -53,28 +54,20 @@ public class ContratacionServiceImpl implements ContratacionService {
 
     @Override
     public ContratacionResponse save(ContratacionRequest contratacionRequest) {
-        Contratacion contratacion = contratacionMapper.toContratacion(contratacionRequest);
-        setRelations(contratacion, contratacionRequest);
-
-        // Asignar la fecha actual
-        contratacion.setFechaContratacion(new Date()); // o LocalDate.now() si usas java.time
-        contratacion.setEstado(true); // Si también quieres activarlo por defecto
-
-        return contratacionMapper.toContratacionResponse(contratacionRepository.save(contratacion));
+        Contratacion contratacionGuardar = contratacionMapper.toContratacion(contratacionRequest);
+        setRelations(contratacionGuardar, contratacionRequest);
+        contratacionGuardar.setFechaContratacion(LocalDate.now());
+        return contratacionMapper.toContratacionResponse(contratacionRepository.save(contratacionGuardar));
     }
 
     @Override
     public ContratacionResponse update(ContratacionRequest contratacionRequest, Long id) {
-        Contratacion contratacion = contratacionRepository.findById(id)
+        Contratacion contratacionActualizar = contratacionRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Contratación no encontrada con ID: " + id));
-
-        setRelations(contratacion, contratacionRequest);
-
-        // Actualizar campos específicos
-        contratacion.setSalario(contratacionRequest.getSalario());
-        contratacion.setEstado(contratacionRequest.getEstado());
-
-        return contratacionMapper.toContratacionResponse(contratacionRepository.save(contratacion));
+        setRelations(contratacionActualizar, contratacionRequest);
+        contratacionActualizar.setSalario(contratacionRequest.getSalario());
+        contratacionActualizar.setEstado(contratacionRequest.getEstado());
+        return contratacionMapper.toContratacionResponse(contratacionRepository.save(contratacionActualizar));
     }
 
     @Override
@@ -82,21 +75,14 @@ public class ContratacionServiceImpl implements ContratacionService {
         contratacionRepository.deleteById(id);
     }
 
-    private void setRelations(Contratacion contratacion, ContratacionRequest contratacionRequest) {
-        // Obtener y asignar el Empleado
-        contratacion.setEmpleado(empleadoRepository.findById(contratacionRequest.getEmpleadoId())
+    private void setRelations(Contratacion contratacion, ContratacionRequest request) {
+        contratacion.setEmpleado(empleadoRepository.findById(request.getEmpleadoId())
                 .orElseThrow(() -> new EntityNotFoundException("Empleado no encontrado")));
-
-        // Obtener y asignar el Cargo
-        contratacion.setCargo(cargoRepository.findById(contratacionRequest.getCargoId())
+        contratacion.setCargo(cargoRepository.findById(request.getCargoId())
                 .orElseThrow(() -> new EntityNotFoundException("Cargo no encontrado")));
-
-        // Obtener y asignar el Departamento
-        contratacion.setDepartamento(departamentoRepository.findById(contratacionRequest.getDepartamentoId())
+        contratacion.setDepartamento(departamentoRepository.findById(request.getDepartamentoId())
                 .orElseThrow(() -> new EntityNotFoundException("Departamento no encontrado")));
-
-        // Obtener y asignar el TipoContratacion
-        contratacion.setTipoContratacion(tipoContratacionRepository.findById(contratacionRequest.getTipoContratacionId())
+        contratacion.setTipoContratacion(tipoContratacionRepository.findById(request.getTipoContratacionId())
                 .orElseThrow(() -> new EntityNotFoundException("Tipo de contratación no encontrado")));
     }
 

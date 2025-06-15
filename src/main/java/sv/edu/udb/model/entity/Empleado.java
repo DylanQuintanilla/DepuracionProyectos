@@ -32,6 +32,8 @@ public class Empleado {
     @Column(length = 50, nullable = false, unique = true)
     private String correo;
 
+    //Dos formas de ocupar fechas, numero 1 es con el @Temporal el cual define si queremos fecha y hora, solo fecha o solo hora
+    //numero 2, cambiandolo a tipo de variable LocalDate (en el caso de contrataciones) pero este no maneja hora
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;

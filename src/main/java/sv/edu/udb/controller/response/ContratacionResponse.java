@@ -6,7 +6,7 @@ import lombok.Setter;
 import lombok.experimental.FieldNameConstants;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -24,7 +24,7 @@ public class ContratacionResponse {
 
     private String tipoContratacionNombre;
 
-    private Date fechaContratacion;
+    private LocalDate fechaContratacion;
 
     private BigDecimal salario;
 

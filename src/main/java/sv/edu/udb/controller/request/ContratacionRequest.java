@@ -2,6 +2,8 @@ package sv.edu.udb.controller.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
@@ -28,6 +30,8 @@ public class ContratacionRequest {
     @NotNull(message = "El tipo de contratacion es obligatorio")
     private Long tipoContratacionId;
 
+    @DecimalMin(value = "0.1", message = "El precio debe ser al menos 0.1")
+    @Digits(integer = 8, fraction = 2, message = "El precio debe tener como máximo 8 dígitos enteros y 2 decimales")
     @NotNull(message = "El salario es obligatorio")
     private BigDecimal salario;
 

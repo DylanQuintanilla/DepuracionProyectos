@@ -22,7 +22,7 @@ public class EmpleadoResponse {
 
     private String correo;
 
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date fechaNacimiento;
 
     //Agregar pero despues ahorita solo recordatorio que automaticamente aparezca la lista de las contrataciones que tenga este empleado paginado

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -37,7 +38,7 @@ public class Contratacion {
     private TipoContratacion tipoContratacion;
 
     @Column(nullable = false)
-    private Date fechaContratacion;
+    private LocalDate fechaContratacion;
 
     @Column(nullable = false)
     private Boolean estado;

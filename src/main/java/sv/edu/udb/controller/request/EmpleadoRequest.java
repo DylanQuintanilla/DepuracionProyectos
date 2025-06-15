@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import jakarta.validation.constraints.*;
+import sv.edu.udb.controller.validation.Dui.Dui;
+import sv.edu.udb.controller.validation.PhoneNumber.PhoneNumber;
+
 import java.util.Date;
 
 @Getter
@@ -18,15 +21,15 @@ import java.util.Date;
 public class EmpleadoRequest {
 
     @NotBlank(message = "El DUI es obligatorio")
-    @Pattern(regexp = "^\\d{8}-\\d{1}$", message = "El DUI debe tener el formato 12345678-9")
+    @Dui( message = "El DUI debe tener el formato 12345678-9")
     private String dui;
 
     @NotBlank(message = "El nombre de la persona es obligatorio")
-    @Size(min = 5, max = 50, message = "El nombre no puede exceder los 50 caracteres")
+    @Size(min = 5, max = 50, message = "El nombre debe tener entre 5 a 50 caracteres")
     private String nombre;
 
     @NotBlank(message = "El número de teléfono es obligatorio")
-    @Pattern(regexp = "^\\d{4}-\\d{4}$", message = "El teléfono debe tener el formato 1234-5678")
+    @PhoneNumber(message = "El teléfono debe tener el formato 1234-5678")
     private String numeroTelefono;
 
     @NotBlank(message = "El correo institucional es obligatorio")
