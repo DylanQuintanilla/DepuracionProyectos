@@ -36,7 +36,7 @@ public @interface PhoneNumber {
      * Ejemplo: 1234-5678
      * @return patrón REGEX
      */
-    String pattern() default "^\\\\d{4}-\\\\d{4}$"; // Formato E.164
+    String pattern() default "^\\d{4}-\\d{4}$"; // Formato E.164
 
     /**
      * Grupos de validación a los que pertenece esta anotación.

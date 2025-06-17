@@ -20,7 +20,7 @@ public @interface Dui {
 
     String message() default "Número de Dui inválido";
 
-    String pattern() default "^\\\\d{8}-\\\\d{1}$";
+    String pattern() default "^\\d{8}-\\d{1}$";
 
     Class<?>[] groups() default {};
 

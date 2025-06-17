@@ -12,7 +12,6 @@ public class PhoneNumberValidator implements ConstraintValidator<PhoneNumber, St
 
     private String regexPattern;
     private Pattern pattern;
-    private Matcher matcher;
 
     /**
      * Método que inicializa el validador con el patrón definido en la anotación.
@@ -21,6 +20,7 @@ public class PhoneNumberValidator implements ConstraintValidator<PhoneNumber, St
     @Override
     public void initialize(final PhoneNumber constraintAnnotation) {
         regexPattern = constraintAnnotation.pattern(); // Obtiene el patrón del campo
+        pattern = Pattern.compile(regexPattern); // Compilar el patrón aquí para optimizar rendimiento
     }
 
     /**
@@ -32,24 +32,10 @@ public class PhoneNumberValidator implements ConstraintValidator<PhoneNumber, St
      */
     @Override
     public boolean isValid(String phoneNumber, ConstraintValidatorContext context) {
-        return isValidPhoneNumber(phoneNumber);
-    }
-
-    /**
-     * Comprueba si el número de teléfono coincide con el patrón REGEX establecido.
-     *
-     * @param phoneNumber El número de teléfono a comprobar
-     * @return true si el número coincide con el patrón, false en caso contrario
-     */
-    private boolean isValidPhoneNumber(final String phoneNumber) {
         if (phoneNumber == null || phoneNumber.isBlank()) {
-            return false; // Si está vacío o es nulo, no es válido
+            return false;
         }
-
-        // Compilamos el patrón y comprobamos si el número coincide
-        pattern = Pattern.compile(regexPattern);
-        matcher = pattern.matcher(phoneNumber);
-
-        return matcher.matches(); // Devolvemos el resultado de la comparación
+        Matcher matcher = pattern.matcher(phoneNumber);
+        return matcher.matches();
     }
 }

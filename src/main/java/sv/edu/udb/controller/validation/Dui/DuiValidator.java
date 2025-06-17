@@ -10,26 +10,20 @@ public class DuiValidator implements ConstraintValidator<Dui, String> {
 
     private String regexPattern;
     private Pattern pattern;
-    private Matcher matcher;
 
     @Override
     public void initialize(final Dui constraintAnnotation) {
         regexPattern = constraintAnnotation.pattern();
-    }
-
-    private boolean isValidDui(final String dui) {
-        if (dui == null || dui.isBlank()) {
-            return false;
-        }
-
         pattern = Pattern.compile(regexPattern);
-        matcher = pattern.matcher(dui);
-
-        return matcher.matches();
     }
+
 
     @Override
     public boolean isValid(String dui, ConstraintValidatorContext context) {
-        return isValidDui(dui);
+        if (dui == null || dui.isBlank()) {
+            return false;
+        }
+        Matcher matcher = pattern.matcher(dui);
+        return matcher.matches();
     }
 }
