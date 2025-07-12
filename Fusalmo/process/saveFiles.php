@@ -2,7 +2,7 @@
 // process/saveFiles.php
 
 // Definir constantes para la configuración
-define('UPLOAD_DIR', '/home/fusalmosif/public_html/assets/routines/');
+define('UPLOAD_DIR', __DIR__ . '/../../assets/routines/');
 define('MAX_FILE_SIZE', 10 * 1024 * 1024); // 10 MB en bytes
 define('ALLOWED_TYPES', ['application/pdf']);
 
