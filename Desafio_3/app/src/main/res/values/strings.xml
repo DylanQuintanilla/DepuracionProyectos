@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Clima Global</string>
+    <string name="loading">Cargando…</string>
+    <string name="error_loading">Error al cargar datos</string>
+    <string name="no_internet">Sin conexión a Internet</string>
+    <string name="retry">Reintentar</string>
+    <string name="regions_title">Regiones del Mundo</string>
+    <string name="countries_title">Países</string>
+    <string name="country_detail_title">Detalle del País</string>
+    <string name="capital">Capital</string>
+    <string name="population">Población</string>
+    <string name="region">Región</string>
+    <string name="error">Error</string>
+</resources>

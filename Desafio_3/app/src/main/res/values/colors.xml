@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Paleta Minimalista -->
+    <color name="primary">#1A1A1A</color>
+    <color name="primary_dark">#000000</color>
+    <color name="accent">#4A90E2</color>
+    <color name="accent_light">#6BA5E7</color>
+
+    <color name="background">#F8F9FA</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_variant">#F5F5F5</color>
+
+    <color name="text_primary">#1A1A1A</color>
+    <color name="text_secondary">#666666</color>
+    <color name="text_tertiary">#999999</color>
+
+    <color name="divider">#E0E0E0</color>
+    <color name="error">#E74C3C</color>
+    <color name="success">#27AE60</color>
+
+    <color name="ic_launcher_background">#4A90E2</color>
+
+    <!-- Colores para regiones -->
+    <color name="region_africa">#E74C3C</color>
+    <color name="region_americas">#3498DB</color>
+    <color name="region_asia">#F39C12</color>
+    <color name="region_europe">#9B59B6</color>
+    <color name="region_oceania">#1ABC9C</color>
+</resources>
